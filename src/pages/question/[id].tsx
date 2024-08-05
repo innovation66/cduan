@@ -3,7 +3,8 @@ import PageWrapper from "@/components/PageWrapper";
 import { getQuestion } from "@/services/question";
 import { getMaterialByType } from "@/components/QNComponents";
 export default function Question({ data }: any) {
-  const { id, title, description, css, scripts, componentList } = data;
+  const { id, schema } = data;
+  const { title, description, css, scripts, componentList = [] } = schema;
   return (
     <PageWrapper
       title={title}
@@ -43,6 +44,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: any) {
   const id = `question-${params.id}`;
   const res = await getQuestion(id);
+  console.log("=====res", res);
   return {
     props: {
       data: res.data,
