@@ -45,6 +45,8 @@ export async function getStaticProps({ params }: any) {
   const id = `question-${params.id}`;
   const res = await getQuestion(id);
   console.log("=====res", res);
+  console.log(res.data.schema.componentList[0])
+  console.log(res.data.schema.componentList[2])
   return {
     props: {
       data: res.data,
